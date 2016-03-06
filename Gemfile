@@ -22,6 +22,7 @@ gem 'devise', '~> 3.5'
 gem 'faker', '~> 1.6'
 
 group :development, :test do
+  gem 'capybara', '~> 2.6'
   gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails', '~> 4.6'
 end
