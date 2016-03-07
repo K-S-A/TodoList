@@ -2,6 +2,11 @@
   .panel-heading
     h1 Log In
   .panel-body
-    form name="loginForm" role="form" novalidate='' data={ng_submit: "vm.login()"} 
+    form { name="loginForm"
+           role="form"
+           novalidate=""
+           data={ng_submit: "vm.login()"} } 
       div data={ng_include: "'auth/_form.html'"} 
-      input.btn.btn-default.btn-lg type="submit" value="Log In" data={ng_disabled: "loginForm.$invalid"} 
+      input.btn.btn-default.btn-lg { type="submit"
+                                     value="Log In"
+                                     data={ng_disabled: "loginForm.$invalid"} }

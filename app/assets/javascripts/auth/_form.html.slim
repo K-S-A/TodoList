@@ -1,11 +1,17 @@
-.input-group.form-group.col-md-8 data={ng_class: "vm.valClass('email')"} 
+.input-group.form-group.col-md-8 auth-validation=''
   label for="email"  E-mail:
-  input#email.form-control name="email" type="email" placeholder="Email" required='' data={ng_model: "vm.user.email", ng_pattern: "/^([a-z0-9]+@[a-z]+\.[a-z]{2,5})$/"} /
-  p.text-danger data={ng_show: "!loginForm.email.$viewValue && loginForm.email.$dirty"}  E-mail is required.
-  p.text-danger data={ng_show: "loginForm.email.$invalid && loginForm.email.$dirty"}  Please enter correct e-mail.
-.input-group.form-group.col-md-8 data={ng_class: "vm.valClass('password')"} 
+  input#email.form-control { name="email"
+                             type="email"
+                             placeholder="Email"
+                             required=""
+                             data={ ng_model: "vm.user.email",
+                                    ng_pattern: "/^([a-z0-9]+@[a-z]+\.[a-z]{2,5})$/"} }/
+.input-group.form-group.col-md-8 auth-validation=''
   label for="password"  Password:
-  input#password.form-control name="password" type="password" placeholder="Password" required='' data={ng_maxlength: "72", ng_minlength: "8", ng_model: "vm.user.password"} /
-  p.text-danger data={ng_show: "!loginForm.password.$viewValue && loginForm.password.$dirty"}  Password is required.
-  p.text-danger data={ng_show: "loginForm.password.$error.minlength && loginForm.password.$dirty"} Password must be at least 8 characters.
-  p.text-danger data={ng_show: "loginForm.password.$error.maxlength && loginForm.password.$dirty"}  Maximum password length is 72.
+  input#password.form-control { name="password"
+                                type="password"
+                                placeholder="Password"
+                                required=""
+                                data={ ng_maxlength: "72",
+                                       ng_minlength: "8",
+                                       ng_model: "vm.user.password"} }/

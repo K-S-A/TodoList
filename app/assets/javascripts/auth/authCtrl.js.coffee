@@ -6,13 +6,6 @@ angular.module('todoList').controller 'AuthCtrl', [
     vm = this
     vm.user = {}
 
-    vm.valClass = (item) ->
-      if $scope.loginForm[item].$dirty
-        if $scope.loginForm[item].$valid
-          return 'has-success'
-        else
-          return 'has-error'
-
     vm.login = ->
       Auth.login(vm.user).then ->
         $state.go 'home'
