@@ -21,6 +21,8 @@ gem 'devise', '~> 3.5'
 # gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'faker', '~> 1.6'
 
+gem 'angular-rails-templates', '~> 1.0'
+
 group :development, :test do
   gem 'capybara', '~> 2.6'
   gem 'rspec-rails', '~> 3.4'
