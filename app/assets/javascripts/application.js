@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require angular/angular
+//= require angular-rails-templates
 //= require jquery
-//= require jquery-ujs
+// require jquery-ujs
 //= require AngularDevise
 //= require angular-ui-router
-//= require angular-rails-templates
+//= require todoApp
 //= require_tree .
