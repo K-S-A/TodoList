@@ -1,0 +1,31 @@
+{
+  "name": "todo_list",
+  "authors": [
+    "K-S-A <atillas@ukr.net>"
+  ],
+  "description": "Simple todo list.",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "todo",
+    "list"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.6",
+    "jquery": "^2.2.1",
+    "jquery-ujs": "^1.2.0"
+  }
+}
