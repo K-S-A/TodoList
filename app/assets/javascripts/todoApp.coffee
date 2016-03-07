@@ -15,7 +15,7 @@ angular.module('todoList', [
       ).state('login',
       url: '/login'
       templateUrl: 'auth/_login.html'
-      controller: 'AuthCtrl'
+      controller: 'AuthCtrl as vm'
       onEnter: [
         '$state'
         'Auth'
@@ -27,7 +27,7 @@ angular.module('todoList', [
       ]).state 'register',
       url: '/register'
       templateUrl: 'auth/_register.html'
-      controller: 'AuthCtrl'
+      controller: 'AuthCtrl as vm'
       onEnter: [
         '$state'
         'Auth'
