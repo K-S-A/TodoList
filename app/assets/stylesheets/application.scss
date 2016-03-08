@@ -15,3 +15,7 @@
  */
 @import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass/assets/stylesheets/bootstrap";
+
+.navbar-nav > li:hover {
+  @extend .active
+}
