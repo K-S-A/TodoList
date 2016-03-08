@@ -10,7 +10,7 @@ angular.module('todoList', [
   ($stateProvider, $urlRouterProvider) ->
     $stateProvider.state('home',
       url: '/home'
-      templateUrl: 'auth/_login.html'
+      templateUrl: 'home/_main.html'
       controller: 'AuthCtrl'
       ).state('login',
       url: '/login'

@@ -1,0 +1,14 @@
+.navbar.navbar-default
+  .container-fluid
+    .nav.navbar-nav.navbar-right data={ng_controller: "NavCtrl"}
+      ul.nav.navbar-nav
+        li
+          a href="#/home" Home
+        li data={ng_hide: "signedIn()"}
+          a href="#/login" Log In
+        li data={ng_hide: "signedIn()"}
+          a href="#/register" Register
+        li data={ng_show: "signedIn()"}
+          a href="#/" data={ng_click: "logout()"} Log Out
+        li data={ng_show: "signedIn()"}
+          a href="#/" Logged in as: "{{ user.first_name }} {{user.last_name}}"
