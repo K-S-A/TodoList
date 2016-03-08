@@ -8,10 +8,6 @@ angular.module('todoList').directive 'authValidation', ->
       inputNgEl = angular.element(inputEl)
       inputName = inputNgEl.attr("name")
       inputNgEl.bind "blur keyup", ->
-        el.find('p').remove()
-        el.toggleClass("has-error", formCtrl[inputName].$invalid)
-          .toggleClass("has-success", formCtrl[inputName].$valid)
-
         message = switch
           when formCtrl[inputName].$error.required
             'This field is required.'
@@ -22,4 +18,7 @@ angular.module('todoList').directive 'authValidation', ->
           when formCtrl[inputName].$error.pattern
             'Please enter correct e-mail.'
 
+        el.find('p').remove()
         el.append('<p class="text-danger">' + message + '</p>') if message
+        el.toggleClass("has-error", formCtrl[inputName].$invalid)
+          .toggleClass("has-success", formCtrl[inputName].$valid)
