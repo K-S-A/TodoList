@@ -1,17 +1,18 @@
 require 'features/features_spec_helper'
 
-RSpec.feature 'Registration', type: :feature do
+RSpec.feature 'Registration', type: :feature, js: true do
   scenario 'Visitor registers successfully via register form' do
     visit root_path
+    click_on 'Register'
 
-    within '#register_form' do
-      fill_in 'Email', with: Faker::Internet.email
+    within '#loginForm' do
+      fill_in 'E-mail', with: Faker::Internet.email
       fill_in 'Password', with: Faker::Internet.password(10, 20)
-      click_button('Sign up')
+      find('input[type="submit"]').click
     end
 
-    expect(page).not_to have_content 'Sign up'
-    expect(page).to have_content 'Sign out'
-    expect(page).to have_content 'You registered'
+    expect(page).not_to have_content 'Register'
+    expect(page).to have_content 'Log Out'
+    expect(page).to have_content 'You\'re registered'
   end
 end
