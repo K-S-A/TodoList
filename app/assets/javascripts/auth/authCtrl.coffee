@@ -5,6 +5,7 @@ angular.module('todoList').controller 'AuthCtrl', [
   ($scope, $state, Auth) ->
     vm = this
     vm.user = {}
+    vm.email_pattern = '^([a-z0-9_]+@[a-z]+\\.[a-z]{2,5})$'
 
     vm.login = ->
       Auth.login(vm.user).then ->

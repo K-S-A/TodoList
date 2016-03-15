@@ -3,8 +3,9 @@
 angular.module('todoList').controller 'NavCtrl', [
   '$scope'
   '$rootScope'
+  '$timeout'
   'Auth'
-  ($scope, $rootScope, Auth) ->
+  ($scope, $rootScope, $timeout, Auth) ->
     $scope.signedIn = Auth.isAuthenticated
     $scope.logout = Auth.logout
     
@@ -13,8 +14,8 @@ angular.module('todoList').controller 'NavCtrl', [
 
     $scope.$on 'devise:new-registration', (e, user) ->
       $rootScope.user = user
-      $rootScope.alertMsg = 'You\'re registered. Confirmation message sent to ' +
-        user.email + '. Please, confirm your email in the next 7 days.'
+      $rootScope.alertMsg = 'You\'re registered successfully.'
+      $timeout(rmAlertMsg, 3000)
       return
     
     $scope.$on 'devise:login', (e, user) ->
@@ -22,9 +23,13 @@ angular.module('todoList').controller 'NavCtrl', [
       return
     
     $scope.$on 'devise:logout', (e, user) ->
-      userFullName = $rootScope.user.first_name + ' ' + $rootScope.user.last_name
       $rootScope.user = null
-      $rootScope.alertMsg = userFullName + ', you\'re signed out now.'
+      $rootScope.alertMsg = 'You\'re signed out now.'
       return
+
+    rmAlertMsg = ->
+      $rootScope.alertMsg = null
+      return
+
     return
 ]
