@@ -14,7 +14,7 @@ angular.module('todoList').controller 'NavCtrl', [
 
     $scope.$on 'devise:new-registration', (e, user) ->
       $rootScope.user = user
-      $rootScope.alertMsg = 'You\'re registered successfully.'
+      $rootScope.alertMsg = 'You are registered successfully.'
       $timeout(rmAlertMsg, 3000)
       return
     
