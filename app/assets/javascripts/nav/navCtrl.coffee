@@ -35,6 +35,5 @@ angular.module('todoList').controller 'NavCtrl', [
         $rootScope.alertMsg = null
       , 3000)
       return
-
     return
 ]
