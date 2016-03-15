@@ -25,6 +25,7 @@ gem 'angular-rails-templates', '~> 1.0'
 
 group :development, :test do
   gem 'capybara', '~> 2.6'
+  gem 'capybara-webkit', '~> 1.8'
   gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails', '~> 4.6'
 end

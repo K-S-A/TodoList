@@ -52,6 +52,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.8.0)
+      capybara (>= 2.3.0, < 2.7.0)
+      json
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -252,6 +255,7 @@ PLATFORMS
 DEPENDENCIES
   angular-rails-templates (~> 1.0)
   capybara (~> 2.6)
+  capybara-webkit (~> 1.8)
   coffee-rails (~> 4.1.1)
   database_cleaner (~> 1.5)
   devise (~> 3.5)
