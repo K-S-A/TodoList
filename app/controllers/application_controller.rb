@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def main
-  end
-
   respond_to :json
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :set_csrf_cookie_for_ng
+
+  def main
+  end
 
   protected
 
