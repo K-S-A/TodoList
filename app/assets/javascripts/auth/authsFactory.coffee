@@ -13,11 +13,6 @@ angular.module('todoList').factory 'auths', [
       rmMessage()
       return
 
-    o.rmUser = (oldUser, message) ->
-      angular.copy(notice: message, o.user)
-      rmMessage()
-      return
-
     o.showAlert = (message) ->
       o.user.alert = message
       rmMessage()
