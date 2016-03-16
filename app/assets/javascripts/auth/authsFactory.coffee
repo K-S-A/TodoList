@@ -17,11 +17,11 @@ angular.module('todoList').factory 'auths', [
       o.user.alert = message
       rmMessage()
       return
-    
+
     rmMessage = ->
-      $timeout(->
+      $timeout ->
         o.user.alert = o.user.notice = null
-      , 5000)
+      , 5000
       return
 
     o

@@ -16,7 +16,7 @@ angular.module('todoList').controller 'NavCtrl', [
     vm.signedIn = Auth.isAuthenticated
 
     vm.logout = ->
-      Auth.logout().then (oldUser) ->
+      Auth.logout().then ->
         auths.setUser({}, 'You are signed out now.')
       return
 
