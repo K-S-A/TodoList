@@ -1,17 +1,20 @@
-.alert.alert-info role="alert" data-ng-if='alertMsg'
-  p
-    | {{alertMsg}}
+.alert.alert-danger role="alert" data-ng-if='vm.user.alert'
+  p.text-center
+    | {{ vm.user.alert }}
+.alert.alert-info role="alert" data-ng-if='vm.user.notice'
+  p.text-center
+    | {{ vm.user.notice }}
 .navbar.navbar-default
   .container-fluid
-    .nav.navbar-nav.navbar-right data={ng_controller: "NavCtrl"}
+    .nav.navbar-nav.navbar-right
       ul.nav.navbar-nav
         li
           a href="#/home" Home
-        li data-ng-hide="signedIn()"
+        li data-ng-hide="vm.signedIn()"
           a href="#/login" Log In
-        li data-ng-hide="signedIn()"
+        li data-ng-hide="vm.signedIn()"
           a href="#/register" Register
-        li data-ng-show="signedIn()"
-          a href="#/" data={ng_click: "logout()"} Log Out
-        li data-ng-show="signedIn()"
-          a href="#/" Logged in as: "{{ user.first_name }} {{user.last_name}}"
+        li data-ng-show="vm.signedIn()"
+          a href="#/" data={ng_click: "vm.logout()"} Log Out
+        li data-ng-show="vm.signedIn()"
+          a href="#/" Logged in as: "{{ vm.user.first_name }} {{ vm.user.last_name }}"

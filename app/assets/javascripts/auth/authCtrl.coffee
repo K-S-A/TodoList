@@ -1,23 +1,28 @@
+'use strict'
+
 angular.module('todoList').controller 'AuthCtrl', [
-  '$rootScope'
   '$scope'
   '$state'
   'Auth'
-  ($rootScope, $scope, $state, Auth) ->
+  'auths'
+  ($scope, $state, Auth, auths) ->
     vm = this
 
-    vm.user = {}
-    vm.email_pattern = '^([a-z0-9_.-]+@[a-z]+\\.[a-z]{2,5})$'
+    vm.user = auths.user
+    vm.email_pattern = auths.email_pattern
 
     vm.login = ->
-      Auth.login(vm.user).then ->
+      Auth.login(vm.user).then (user) ->
         $state.go 'home'
       , (error) ->
-        $rootScope.alertMsg = 'Wrong user credentials. Check e-mail/password and try again.'
+        auths.showAlert('Wrong user credentials. Check e-mail/password and try again.')
+      return
 
     vm.register = ->
-      Auth.register(vm.user).then ->
+      Auth.register(vm.user).then (user) ->
+        auths.setUser(user, 'You are registered successfully.')
         $state.go 'home'
+      return
 
     vm
 ]

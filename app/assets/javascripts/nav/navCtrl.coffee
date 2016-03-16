@@ -2,38 +2,23 @@
 
 angular.module('todoList').controller 'NavCtrl', [
   '$scope'
-  '$rootScope'
-  '$timeout'
   'Auth'
-  ($scope, $rootScope, $timeout, Auth) ->
-    $scope.signedIn = Auth.isAuthenticated
-    $scope.logout = Auth.logout
-    
-    Auth.currentUser().then (user) ->
-      $rootScope.user = user
+  'auths'
+  ($scope, Auth, auths) ->
+    Auth.currentUser()
 
-    $scope.$on 'devise:new-registration', (e, user) ->
-      $rootScope.user = user
-      $rootScope.alertMsg = 'You are registered successfully.'
-      rmAlertMsg()
-      return
-    
     $scope.$on 'devise:login', (e, user) ->
-      $rootScope.alertMsg = 'You are authorized successfully.'
-      $rootScope.user = user
-      rmAlertMsg()
-      return
-    
-    $scope.$on 'devise:logout', (e, user) ->
-      $rootScope.user = null
-      $rootScope.alertMsg = 'You are signed out now.'
-      rmAlertMsg()
+      auths.setUser(user, 'You are authorized successfully.')
+
+    vm = this
+
+    vm.user = auths.user
+    vm.signedIn = Auth.isAuthenticated
+
+    vm.logout = ->
+      Auth.logout().then (oldUser) ->
+        auths.rmUser(oldUser, 'You are signed out now.')
       return
 
-    rmAlertMsg = ->
-      $timeout(->
-        $rootScope.alertMsg = null
-      , 3000)
-      return
-    return
+    vm
 ]
