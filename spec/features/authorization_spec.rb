@@ -54,7 +54,6 @@ RSpec.feature 'Authorization', :js do
     expect(page).to have_content 'signed out'
   end
 
-
   scenario 'Visitor can\'t log in without registration' do
     visit root_path
     click_on 'Log In'
@@ -68,5 +67,56 @@ RSpec.feature 'Authorization', :js do
 
     expect(page).not_to have_content 'Log Out'
     expect(page).to have_content 'Wrong user credentials'
+  end
+
+  context 'Visitor can\'t register' do
+    background do
+      visit root_path
+      click_on 'Register'
+    end
+
+    after(:each) do
+      expect(page).to have_selector('input[disabled="disabled"][value="Register"]')
+    end
+
+    scenario 'without email' do
+      within '#registration_form' do
+        fill_in 'email', with: "\b"
+      end
+
+      expect(page).to have_content 'field is required'
+    end
+
+    scenario 'without password' do
+      within '#registration_form' do
+        fill_in 'password', with: "\b"
+      end
+
+      expect(page).to have_content 'field is required'
+    end
+
+    scenario 'with password length from 1 to 7 characters' do
+      within '#registration_form' do
+        fill_in 'password', with: Faker::Internet.password(1, 7)
+      end
+
+      expect(page).to have_content 'Password must be at least 8 characters'
+    end
+
+    scenario 'with password longer than 72 characters' do
+      within '#registration_form' do
+        fill_in 'password', with: Faker::Internet.password(73, 100)
+      end
+
+      expect(page).to have_content 'Maximum password length is 72'
+    end
+
+    scenario 'with invalid email format' do
+      within '#registration_form' do
+        fill_in 'email', with: 'invalid@email.'
+      end
+
+      expect(page).to have_content 'enter correct e-mail'
+    end
   end
 end
