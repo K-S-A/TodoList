@@ -1,0 +1,24 @@
+{
+  "name": "ng-ror-todo-list",
+  "version": "0.0.0",
+  "description": "Simple TODO list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/K-S-A/TodoList.git"
+  },
+  "author": "K-S-A",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/K-S-A/TodoList/issues"
+  },
+  "dependencies": {
+    "bower": "1.7.7"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}
