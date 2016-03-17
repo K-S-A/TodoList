@@ -21,3 +21,18 @@ RSpec.shared_examples 'for rendering template' do |name|
     expect(response).to render_template(name)
   end
 end
+
+RSpec.shared_examples 'for responding with json' do |obj, res|
+  it "responds with #{obj} of #{res} attributes" do
+    expect(json).to eq(result)
+  end
+end
+
+RSpec.shared_examples 'for not authorized response' do
+  it 'responds with 401 status if user is not authorized' do
+    reset_session
+
+    expect(response.status).to eq(401)
+    expect(json['error']).to eq(error)
+  end
+end

@@ -10,7 +10,7 @@ RSpec.describe ProjectsController, type: :controller do
     FactoryGirl.create_list(:project, 2)
   end
 
-  before(:each) { sign_in @user }
+  let!(:log_in) { sign_in @user }
 
   let(:json) { JSON.parse(response.body) }
   let(:error) { 'You need to sign in or sign up before continuing.' }
@@ -20,34 +20,34 @@ RSpec.describe ProjectsController, type: :controller do
   context 'GET index' do
     before(:each) { get :index }
 
+    let(:result) { [project_to_json] }
+
+    let(:reset_session) do
+      log_out
+      get :index
+    end
+
     include_examples 'for successful json request'
     include_examples 'for assigning instance variable', :projects
     include_examples 'for rendering template', :index
-
-    it 'responds with hash of project attributes' do
-      expect(json).to eq([project_to_json])
-    end
+    include_examples 'for responding with json', :array, :projects
+    include_examples 'for not authorized response'
   end
 
-  context 'GET show' do #, :focus do
+  context 'GET show' do
     before(:each) { get :show, { id: @project.id } }
 
-    let(:get_show) { get :show, { id: @project.id } }
+    let(:result) { project_to_json }
+    
+    let(:reset_session) do
+      log_out
+      get :show, { id: @project.id }
+    end
 
     include_examples 'for successful json request'
     include_examples 'for assigning instance variable', :project
     include_examples 'for rendering template', :show
-
-    it 'responds with 401 status if user not authorized' do
-      log_out
-      get_show
-
-      expect(response.status).to eq(401)
-      expect(json['error']).to eq(error)
-    end
-
-    it 'responds with hash of project attributes' do
-      expect(json).to eq(project_to_json)
-    end
+    include_examples 'for responding with json', :hash, :project
+    include_examples 'for not authorized response'
   end
 end
