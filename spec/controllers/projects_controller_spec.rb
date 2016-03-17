@@ -7,7 +7,7 @@ RSpec.describe ProjectsController, type: :controller do
     @user = FactoryGirl.create(:user)
     @project = FactoryGirl.create(:project, user: @user)
     @projects = [@project]
-    FactoryGirl.create_list(:project, 2)
+    @alter_project = FactoryGirl.create_list(:project, 2).last
   end
 
   let!(:log_in) { sign_in @user }
@@ -18,14 +18,10 @@ RSpec.describe ProjectsController, type: :controller do
   let(:log_out) { sign_out @user }
 
   context 'GET index' do
-    before(:each) { get :index }
+    let!(:call_action) { get :index }
 
+    let(:reset_session) { get :index }
     let(:result) { [project_to_json] }
-
-    let(:reset_session) do
-      log_out
-      get :index
-    end
 
     include_examples 'for successful json request'
     include_examples 'for assigning instance variable', :projects
@@ -35,19 +31,24 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   context 'GET show' do
-    before(:each) { get :show, id: @project.id }
+    let!(:call_action) { get :show, id: @project.id }
 
+    let(:reset_session) { get :show, id: @project.id }
     let(:result) { project_to_json }
-
-    let(:reset_session) do
-      log_out
-      get :show, id: @project.id
-    end
 
     include_examples 'for successful json request'
     include_examples 'for assigning instance variable', :project
     include_examples 'for rendering template', :show
     include_examples 'for responding with json', :hash, :project
     include_examples 'for not authorized response'
+
+    context 'when project does not exist in scope of current user' do
+      it 'responds with 404 status' do
+        get :show, id: @alter_project.id
+
+        expect(response).to render_template(nil)
+        expect(response.status).to eq(404)
+      end
+    end
   end
 end

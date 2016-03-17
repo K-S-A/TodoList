@@ -7,5 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_user.projects.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render nothing: true, status: 404
   end
 end

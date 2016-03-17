@@ -19,6 +19,7 @@ end
 RSpec.shared_examples 'for rendering template' do |name|
   it "renders the '#{name}' template" do
     expect(response).to render_template(name)
+    expect(response).to render_template('_project')
   end
 end
 
@@ -30,6 +31,7 @@ end
 
 RSpec.shared_examples 'for not authorized response' do
   it 'responds with 401 status if user is not authorized' do
+    log_out
     reset_session
 
     expect(response.status).to eq(401)
