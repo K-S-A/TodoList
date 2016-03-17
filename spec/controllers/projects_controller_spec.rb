@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  render_views
+
   before(:all) do
     @user = FactoryGirl.create(:user)
+    @project = FactoryGirl.create(:project, user: @user)
     FactoryGirl.create_list(:project, 2)
   end
 
@@ -11,11 +14,12 @@ RSpec.describe ProjectsController, type: :controller do
     get :index
   end
 
-  let(:project) { FactoryGirl.create(:project, user: @user) }
+  let(:json) { JSON.parse(response.body) }
+  let(:project_to_json) { @project.attributes.reject { |k, _| k =~ /_/ } }
 
   context 'GET index' do
     it 'assigns projects of current user to @projects' do
-      expect(assigns(:projects)).to eq([project])
+      expect(assigns(:projects)).to eq([@project])
     end
 
     it 'responds to json format' do
@@ -28,6 +32,10 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'renders the index template' do
       expect(response).to render_template('index')
+    end
+
+    it 'responds with hash of project attributes' do
+      expect(json).to eq([project_to_json])
     end
   end
 end
