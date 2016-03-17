@@ -10,7 +10,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include Warden::Test::Helpers
   config.include FactoryGirl::Syntax::Methods
-
+  config.include Devise::TestHelpers, :type => :controller
+  
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     Warden.test_mode!
@@ -22,6 +23,10 @@ RSpec.configure do |config|
 
   config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each, type: :controller) do
+    request.headers["accept"] = 'application/json'
   end
 
   config.before(:each) do
