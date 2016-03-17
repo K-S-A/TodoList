@@ -5,7 +5,7 @@ RSpec.describe ProjectsController, type: :controller do
     @user = FactoryGirl.create(:user)
     FactoryGirl.create_list(:project, 2)
   end
-  
+
   before(:each) do
     sign_in @user
     get :index
@@ -19,7 +19,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it 'responds to json format' do
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
     end
 
     it 'responds with success status' do
