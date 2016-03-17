@@ -35,13 +35,13 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   context 'GET show' do
-    before(:each) { get :show, { id: @project.id } }
+    before(:each) { get :show, id: @project.id }
 
     let(:result) { project_to_json }
-    
+
     let(:reset_session) do
       log_out
-      get :show, { id: @project.id }
+      get :show, id: @project.id
     end
 
     include_examples 'for successful json request'
