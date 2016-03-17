@@ -6,36 +6,48 @@ RSpec.describe ProjectsController, type: :controller do
   before(:all) do
     @user = FactoryGirl.create(:user)
     @project = FactoryGirl.create(:project, user: @user)
+    @projects = [@project]
     FactoryGirl.create_list(:project, 2)
   end
 
-  before(:each) do
-    sign_in @user
-    get :index
-  end
+  before(:each) { sign_in @user }
 
   let(:json) { JSON.parse(response.body) }
+  let(:error) { 'You need to sign in or sign up before continuing.' }
   let(:project_to_json) { @project.attributes.reject { |k, _| k =~ /_/ } }
+  let(:log_out) { sign_out @user }
 
   context 'GET index' do
-    it 'assigns projects of current user to @projects' do
-      expect(assigns(:projects)).to eq([@project])
-    end
+    before(:each) { get :index }
 
-    it 'responds to json format' do
-      expect(response.content_type).to eq 'application/json'
-    end
-
-    it 'responds with success status' do
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'renders the index template' do
-      expect(response).to render_template('index')
-    end
+    include_examples 'for successful json request'
+    include_examples 'for assigning instance variable', :projects
+    include_examples 'for rendering template', :index
 
     it 'responds with hash of project attributes' do
       expect(json).to eq([project_to_json])
+    end
+  end
+
+  context 'GET show' do #, :focus do
+    before(:each) { get :show, { id: @project.id } }
+
+    let(:get_show) { get :show, { id: @project.id } }
+
+    include_examples 'for successful json request'
+    include_examples 'for assigning instance variable', :project
+    include_examples 'for rendering template', :show
+
+    it 'responds with 401 status if user not authorized' do
+      log_out
+      get_show
+
+      expect(response.status).to eq(401)
+      expect(json['error']).to eq(error)
+    end
+
+    it 'responds with hash of project attributes' do
+      expect(json).to eq(project_to_json)
     end
   end
 end
