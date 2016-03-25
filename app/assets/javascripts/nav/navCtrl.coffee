@@ -1,15 +1,9 @@
 'use strict'
 
 angular.module('todoList').controller 'NavCtrl', [
-  '$scope'
   'Auth'
   'auths'
-  ($scope, Auth, auths) ->
-    Auth.currentUser()
-
-    $scope.$on 'devise:login', (e, user) ->
-      auths.setUser(user, 'You are authorized successfully.')
-
+  (Auth, auths) ->
     vm = this
 
     vm.user = auths.user

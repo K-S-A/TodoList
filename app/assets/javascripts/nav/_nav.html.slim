@@ -1,9 +1,3 @@
-.alert.alert-danger role="alert" data-ng-if='vm.user.alert'
-  p.text-center
-    | {{ vm.user.alert }}
-.alert.alert-info role="alert" data-ng-if='vm.user.notice'
-  p.text-center
-    | {{ vm.user.notice }}
 .navbar.navbar-default
   .container-fluid
     .nav.navbar-nav.navbar-right
@@ -18,3 +12,11 @@
           a href="#/" data={ng_click: "vm.logout()"} Log Out
         li data-ng-show="vm.signedIn()"
           a href="#/" Logged in as: "{{ vm.user.first_name }} {{ vm.user.last_name }}"
+
+.auth-msg
+  .alert.alert-danger role="alert" data-ng-if='vm.user.alert'
+    p.text-center
+      | {{ vm.user.alert }}
+  .alert.alert-info role="alert" data-ng-if='vm.user.notice'
+    p.text-center
+      | {{ vm.user.notice }}
