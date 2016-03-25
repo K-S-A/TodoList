@@ -34,6 +34,6 @@
     "angular-xeditable": "^0.1.11"
   },
   "resolutions": {
-    "angular": "1.5.2"
+    "angular": "^1.5.0"
   }
 }
