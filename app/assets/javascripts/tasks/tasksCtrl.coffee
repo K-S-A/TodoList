@@ -15,8 +15,10 @@ angular.module('todoList').controller 'TasksCtrl', [
       task.delete()
 
     vm.update = (name, task) ->
-      task.name = name
-      task.update()
+      t = angular.copy task
+      t.name = name
+      t.update().then (data) ->
+        angular.extend(task, data)
 
     vm
 ]

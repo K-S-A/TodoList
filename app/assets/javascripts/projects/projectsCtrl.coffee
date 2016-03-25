@@ -8,7 +8,7 @@ angular.module('todoList').controller 'ProjectsCtrl', [
   '$state'
   (Project, $uibModal, $anchorScroll, $window, $state) ->
     vm = this
-    console.log(Project, $uibModal, $anchorScroll, $window, $state)
+
     vm.projects = Project.all
     vm.project = Project.current
 
@@ -39,7 +39,6 @@ angular.module('todoList').controller 'ProjectsCtrl', [
 
     vm.destroy = (project) ->
       if $window.confirm('Are you sure?')
-        #console.log($state.current.name is 'projects')
         project.delete().then ->
           if $state.current.name is 'project'
             $state.go 'projects'
