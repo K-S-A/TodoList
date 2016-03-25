@@ -1,6 +1,7 @@
-RSpec.shared_examples 'for successful json request' do
-  it 'responds to json format' do
-    expect(response.content_type).to eq 'application/json'
+RSpec.shared_examples 'for successfull request' do |format|
+  format ||= 'application/json'
+  it "responds with #{format} format" do
+    expect(response.content_type).to eq(format)
   end
 
   it 'responds with success status' do
@@ -16,10 +17,11 @@ RSpec.shared_examples 'for assigning instance variable' do |inst_var|
   end
 end
 
-RSpec.shared_examples 'for rendering template' do |name|
-  it "renders the '#{name}' template" do
-    expect(response).to render_template(name)
-    expect(response).to render_template('_project')
+RSpec.shared_examples 'for rendering templates' do |names|
+  names.each do |name|
+    it "renders the '#{name}' template" do
+      expect(response).to render_template(name)
+    end
   end
 end
 
@@ -36,5 +38,33 @@ RSpec.shared_examples 'for not authorized response' do
 
     expect(response.status).to eq(401)
     expect(json['error']).to eq(error)
+  end
+end
+
+RSpec.shared_examples 'for render nothing with status' do |code|
+  it "responds with #{code} status" do
+    expect(response.status).to eq(code)
+  end
+
+  it 'renders nothing' do
+    expect(response).to render_template(nil)
+  end
+end
+
+RSpec.shared_examples 'for saved from' do |title|
+  it "saves #{title} project" do
+    expect(assigns(:project)).to be_persisted
+  end
+end
+
+RSpec.shared_examples 'for Project instance' do
+  it 'assigns @project to instance of Project' do
+    expect(assigns(:project)).to be_a(Project)
+  end
+end
+
+RSpec.shared_examples 'for assigns @project to nil' do
+  it 'assigns @project to nil' do
+    expect(assigns(:project)).to be_nil
   end
 end
