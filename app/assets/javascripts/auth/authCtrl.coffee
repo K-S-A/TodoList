@@ -1,11 +1,10 @@
 'use strict'
 
 angular.module('todoList').controller 'AuthCtrl', [
-  '$scope'
   '$state'
   'Auth'
   'auths'
-  ($scope, $state, Auth, auths) ->
+  ($state, Auth, auths) ->
     vm = this
 
     vm.user = auths.user
@@ -13,7 +12,7 @@ angular.module('todoList').controller 'AuthCtrl', [
 
     vm.login = ->
       Auth.login(vm.user).then (user) ->
-        $state.go 'home'
+        $state.go 'projects'
       , (error) ->
         auths.showAlert('Wrong user credentials. Check e-mail/password and try again.')
       return
@@ -21,7 +20,7 @@ angular.module('todoList').controller 'AuthCtrl', [
     vm.register = ->
       Auth.register(vm.user).then (user) ->
         auths.setUser(user, 'You are registered successfully.')
-        $state.go 'home'
+        $state.go 'projects'
       return
 
     vm
