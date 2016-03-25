@@ -8,7 +8,7 @@ angular.module('todoList').controller 'ProjectsCtrl', [
   '$state'
   (Project, $uibModal, $anchorScroll, $window, $state) ->
     vm = this
-
+    console.log(Project, $uibModal, $anchorScroll, $window, $state)
     vm.projects = Project.all
     vm.project = Project.current
 
@@ -28,7 +28,7 @@ angular.module('todoList').controller 'ProjectsCtrl', [
         templateUrl: 'projects/_edit_form.html'
         controller: 'ProjectCtrl as vm'
         size: 'lg'
-        resolve: ['Project', (Project) ->
+        resolve: data: ['Project', (Project) ->
           Project.current = project])
 
       modalInstance.result.finally ->

@@ -27,7 +27,7 @@ angular.module('todoList', [
         url: '/projects'
         templateUrl: 'projects/index.html'
         controller: 'ProjectsCtrl as vm'
-        resolve: ['Project', (Project) ->
+        resolve: data: ['Project', (Project) ->
           Project.get().then (data) ->
             Project.all = data
             Project.current = {}]
@@ -35,12 +35,13 @@ angular.module('todoList', [
         url: '/projects/{id:[0-9]+}'
         templateUrl: 'projects/show.html'
         controller: 'ProjectsCtrl as vm'
-        resolve: ['$state', '$stateParams', 'Project', ($state, $stateParams, Project) ->
+        resolve: data: ['$state', '$stateParams', 'Project', ($state, $stateParams, Project) ->
           Project.get($stateParams.id).then (data) ->
             Project.current = data]
 
     $urlRouterProvider.otherwise '/home'
     return
+
 ]).run([
   '$rootScope'
   '$state'
