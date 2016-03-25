@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "Simple TODO list.",
   "main": "index.js",
+  "engines": {
+    "node": "0.10.25",
+    "npm": "3.8.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
