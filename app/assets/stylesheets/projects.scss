@@ -1,0 +1,209 @@
+$b-radius: 20px;
+
+@mixin min_width {
+  min-width: 750px;
+}
+
+@mixin pointer_hover {
+  cursor: pointer;
+  cursor: hand;
+}
+
+@mixin dflex {
+  display: flex;
+  align-items: center;
+}
+
+@mixin ctransparent {
+  color: transparent;
+}
+
+.container-projects {
+  @include min_width;
+}
+
+.container-project {
+  margin-bottom: 30px;
+}
+
+.projects-header {
+  margin: 80px 0 20px;
+}
+
+.add-project-box {
+  @extend .gradient-background;
+
+  padding: 15px;
+  border-radius: inherit;
+}
+
+.btn-add-project {
+  @include min_width;
+
+  text-align: center;
+  margin-bottom: 70px;
+  
+  .btn-lg {
+    border-radius: 3px;
+    padding-right: 30px;
+  }
+}
+
+.btn-project {
+  background-color: #3c763d;
+  border-color: #3c763d;
+}
+
+.panel {
+  @include min_width;
+  border-radius: 0 0 $b-radius $b-radius;
+  border: 1px transparent;
+  box-shadow: 0 1px 1px #808080;
+}
+
+.panel-primary .panel-body {
+  @include dflex;
+
+  background-color: #cecece;
+  padding: 8px 15px 11px;
+}
+
+.panel-heading {
+  border-radius: 0;
+  font-size:2em;
+
+  .row {
+    @include dflex;
+  }
+}
+
+.panel > .table-rounded:last-child > tbody:last-child {
+  tr:last-child {
+    td:first-child {
+      border-bottom-left-radius: $b-radius;
+    }
+
+    td:last-child {
+      border-bottom-right-radius: $b-radius;
+    }
+  }
+
+  tr td {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+}
+
+table.table-rounded > .task-list-hover > tr {
+  td:first-child {
+    width: 50px;
+  }
+
+  td:nth-child(2) {
+    width: 5px;
+    padding: 0;
+  }
+}
+
+.task-name {
+  line-height: 18px;
+  font-weight: bold;
+  color: #999999;
+  padding-left: 15px;
+  padding-right: 20px;
+}
+
+.task-status {
+  margin: 0 10px 10px;
+}
+
+.task-title {
+  @include pointer_hover;
+  padding: 0;
+
+  a {
+    color: inherit;
+  }
+}
+
+.add-task-button {
+  padding: 0 15px;
+}
+
+.glyphicon-tasks {
+  color: #808080;
+  padding-top: 12px;
+}
+
+.plus-icon-lg {
+  float: left;
+  font-size: 2.6em;
+  padding-right: 10px;
+  width: 50px;
+
+  .glyphicon-plus {
+    top: 5px;
+  }
+}
+
+.plus-icon-md {
+  position: relative;
+  top: 4px;
+  padding-right: 15px;
+  margin-top: -5px;
+  color: #32496f;
+  font-size: 1.4em;
+}
+
+.list-inline li+li:before {
+  content: '|';
+  margin-right: 10px;
+}
+
+.auth-msg {
+  @include min_width;
+
+  position: absolute;
+  width: 100%;
+  left: 0;
+  opacity: 0.8;
+}
+
+.task-actions {
+  @include ctransparent;
+  width: 130px;
+
+  li .glyphicon {
+    @include pointer_hover;
+  }
+}
+
+tbody.task-list-hover tr:hover {
+  td {
+    background: #fcfed5;
+  }
+
+  td:nth-child(3) {
+    @include pointer_hover;
+  }
+
+  li, a {
+    color: #999999;
+  }
+}
+
+.task-header {
+  li {
+    @include ctransparent;
+  }
+
+  span {
+    @include pointer_hover;
+  }
+
+  :hover {
+    li, a {
+      color: #98b0d2;
+    }
+  }
+}
