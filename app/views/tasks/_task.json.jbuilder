@@ -1,0 +1,1 @@
+json.(task, :id, :name)
