@@ -13,7 +13,7 @@
             li.label
               span.glyphicon.glyphicon-pencil data={ ng_click: "vm.edit(project)" }
             li.label
-              span.glyphicon.glyphicon-trash data={ ng_click: "vm.destroy(project)" }
+              span.glyphicon.glyphicon-trash data={ ng_click: "vm.destroy(project, $index)" }
 
     .panel-body
       .plus-icon-lg.text-center

@@ -37,13 +37,13 @@ angular.module('todoList').controller 'ProjectsCtrl', [
       .then (data) ->
         vm.project = data
 
-    vm.destroy = (project) ->
+    vm.destroy = (project, index) ->
       if $window.confirm('Are you sure?')
         project.delete().then ->
           if $state.current.name is 'project'
             $state.go 'projects'
           else
-            delete project
+            delete vm.projects[index]
 
     vm
 ]

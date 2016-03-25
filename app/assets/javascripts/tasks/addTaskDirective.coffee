@@ -17,4 +17,19 @@ angular.module('todoList').directive 'deleteTask', ->
   link: (scope, element, attrs, ctrl, transcludeFn) ->
     element.on 'click', (e) ->
       ctrl.delete(scope.task).then ->
-        delete scope.task
+        #tasks = scope.project.tasks
+        #index = tasks.indexOf(scope.task)
+        delete tasks[scope.$index]
+
+#angular.module('todoList').directive 'taskRow', ->
+#  restrict: 'A'
+#  scope: '@'
+#  controller: 'TasksCtrl as vm'
+#  link: (scope, element, attrs, ctrl, transcludeFn) ->
+    #console.log scope.task
+    #console.log ctrl
+    #element.on 'click', (e) ->
+      #console.log('Edited')
+      #ctrl.delete(scope.task).then ->
+        #scope.project.tasks.push(data)
+      #  scope.task = {}
