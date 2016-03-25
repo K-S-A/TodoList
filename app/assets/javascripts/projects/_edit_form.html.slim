@@ -1,0 +1,40 @@
+.add-project-box
+  form.form-horizontal
+    .form-group
+      label.col-xs-2.control-label for="title" Title
+      .col-xs-10
+        input#title.form-control { type="text"
+                                   placeholder="Enter project title here..."
+                                   data={ ng_model: "vm.project.title" } }/
+    .form-group
+      label.col-xs-2.control-label for="description"  Description
+      .col-xs-10
+        textarea#description.form-control { type="text"
+                                            placeholder="Description here..."
+                                            rows="3"
+                                            data={ ng_model: "vm.project.description" } }
+    .form-group
+      .col-xs-offset-2.col-xs-5
+        button.btn.btn-default.col-xs-12 { type="submit"
+                                           data={ ng_click: "vm.cancel()" } } Cancel
+      .col-xs-5
+        button.btn.btn-success.col-xs-12 { type="submit"
+                                           data={ ng_click: "vm.updateProject()" } } Update
+
+// TODO - remove
+/ .input-group.form-group.col-md-8 auth-validation=''
+/   label for="title"  Title:
+/   input#title.form-control { name="title"
+/                              type="text"
+/                              placeholder="Enter project title here..."
+/                              required=""
+/                              data={ ng_model: "vm.project.title",
+/                                     ng_maxlength: "55",
+/                                     ng_minlength: "5" } }/
+/ .input-group.form-group.col-md-8 auth-validation=''
+/   label for="description"  Description:
+/   textarea#description.form-control { name="description"
+/                                       type="text"
+/                                       placeholder="Description here..."
+/                                       data={ ng_maxlength: "250",
+/                                              ng_model: "vm.project.description" } }

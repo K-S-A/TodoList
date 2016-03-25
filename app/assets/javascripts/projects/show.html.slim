@@ -1,0 +1,45 @@
+/ TODO - remove
+pre
+  | {{ vm.project }}
+pre
+  | {{ vm.projects }}
+
+.row data={ ng_init: 'project = vm.project' }
+  .col-md-8.col-md-offset-2.container-project
+    .panel.panel-primary
+
+      .panel-heading.task-header
+        .row
+          .col-xs-1.text-center
+            span.glyphicon.glyphicon-tasks
+          .col-xs-9.task-title
+            span
+              | {{ vm.project.title }}
+          .col-xs-2.text-center.project-actions
+            ul.list-inline
+              li.label
+                span.glyphicon.glyphicon-pencil data={ ng_click: "vm.edit(vm.project)" }
+              li.label
+                span.glyphicon.glyphicon-trash data={ ng_click: "vm.destroy(vm.project)" }
+
+      .panel-body
+        .plus-icon-lg.text-center
+          span.glyphicon.glyphicon-plus.text-success
+        form#task_form.input-group.input-group-lg { name="vm.addTask"
+                                                    role="form"
+                                                    novalidate=""
+                                                    data={ add_task: "" } }
+          input.form-control.input-lg { placeholder="Start typing here to create a task..."
+                                        data={ ng_model: "vm.task.name" } }/
+          span.input-group-btn
+            button.btn.btn-success.btn-lg.btn-project type="submit"
+              span.add-task-button Add Task
+
+      table.table.table-bordered.table-rounded 
+        tbody data={ ng_if: "!vm.project.tasks.length" }
+          tr
+            td
+              p.task-name.text-center No tasks have been added yet.
+        tbody.task-list-hover
+          tr data={ ng_repeat: "task in vm.project.tasks",
+                    ng_include: "'projects/_task.html'" }

@@ -1,0 +1,21 @@
+td
+  .task-status
+    input type="checkbox" data={ ng_model: 'task.status' }
+td
+td
+  p.task-name data={ ng_hide: 'editTaskForm.$visible',
+                     onbeforesave: 'vm.update($data, task)',
+                     editable_text: 'task.name',
+                     e_form: 'editTaskForm',
+                     e_size: 75,
+                     buttons: 'no' }
+    | {{ task.name }}
+td.task-actions
+  ul.list-inline
+    li
+      span.glyphicon.glyphicon-sort
+    li
+      span.glyphicon.glyphicon-pencil data={ ng_click: 'editTaskForm.$show()' }
+
+    li
+      delete-task.glyphicon.glyphicon-trash

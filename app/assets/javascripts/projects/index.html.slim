@@ -1,0 +1,16 @@
+// TODO - remove
+/ pre
+/   | {{ vm.projects }}
+
+.container-projects
+  .projects-header
+    .text-center
+      h1
+        strong SIMPLE TODO LISTS
+  .row data={ ng_repeat: "project in vm.projects",
+              ng_include: "'projects/_project.html'" }
+
+.btn-add-project
+  button.btn.btn-lg.btn-primary type="button" data={ ng_click: 'vm.add()' }
+    span.glyphicon.glyphicon-plus.plus-icon-md
+    strong Add TODO List
