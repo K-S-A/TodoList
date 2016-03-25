@@ -29,6 +29,8 @@
     "jquery-ujs": "^1.2.0",
     "AngularDevise": "angular-devise#^1.3.0",
     "angular-ui-router": "^0.2.18",
-    "angularjs-rails-resource": "^2.0.0"
+    "angularjs-rails-resource": "^2.0.0",
+    "angular-bootstrap": "^1.2.5",
+    "angular-xeditable": "^0.1.11"
   }
 }
