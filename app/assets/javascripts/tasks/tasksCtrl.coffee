@@ -9,7 +9,7 @@ angular.module('todoList').controller 'TasksCtrl', [
       name: ''
 
     vm.create = (id) ->
-      new Task(vm.task).$post('/projects/'+ id + '/tasks')
+      new Task(vm.task).$post('/projects/' + id + '/tasks')
 
     vm.delete = (task) ->
       task.delete()
