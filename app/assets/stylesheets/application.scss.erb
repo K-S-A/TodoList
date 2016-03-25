@@ -1,0 +1,37 @@
+@import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+@import "projects";
+
+/* Import the fonts */
+@font-face {
+  <% path = 'bootstrap-sass/assets/fonts/bootstrap/' %>
+  font-family: 'Glyphicons Halflings';
+  src: url(<%= asset_path("#{path}glyphicons-halflings-regular.eot") %>);
+  src: url(<%= asset_path("#{path}glyphicons-halflings-regular.eot?#iefix") %>) format('embedded-opentype'),
+       url(<%= asset_path("#{path}glyphicons-halflings-regular.woff") %>) format('woff'),
+       url(<%= asset_path("#{path}glyphicons-halflings-regular.ttf") %>) format('truetype'),
+       url(<%= asset_path("#{path}glyphicons-halflings-regular.svg#glyphicons_halflingsregular") %>) format('svg');
+}
+
+.gradient-background {
+  background: transparent linear-gradient(#d4d2c1 25%, #d49614 100%) repeat fixed;
+}
+
+body {
+  @extend .gradient-background;
+}
+
+input[type=checkbox] {
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+}
+
+.navbar-nav > li:hover {
+  @extend .active;
+}
+
+textarea {
+  resize: none;
+}
