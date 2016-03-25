@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322194711) do
+ActiveRecord::Schema.define(version: 20160325192051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "body",       null: false
+    t.string   "file_link"
+    t.integer  "task_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["task_id", "body"], name: "index_comments_on_task_id_and_body", unique: true, using: :btree
+  add_index "comments", ["task_id"], name: "index_comments_on_task_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "title",       null: false
@@ -28,12 +39,15 @@ ActiveRecord::Schema.define(version: 20160322194711) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                       null: false
+    t.integer  "project_id",                 null: false
+    t.boolean  "completed",  default: false
+    t.date     "deadline"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
+  add_index "tasks", ["project_id", "name"], name: "index_tasks_on_project_id_and_name", unique: true, using: :btree
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160322194711) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "comments", "tasks"
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "projects"
 end

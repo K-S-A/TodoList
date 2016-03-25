@@ -2,7 +2,7 @@ user = User.create(email: 'atillas@ukr.net', password: '321321321', first_name: 
 
 user.projects.create([{title: 'For Home'}, {title: 'Complete the test task for Ruby Garage'}])
 
-user.projects.first.tasks.create([
+user.projects.last.tasks.create([
   {name: 'Open this mock-up in Adobe Fireworks'},
   {name: 'Attentively check the file'},
   {name: 'Write HTML & CSS'},
