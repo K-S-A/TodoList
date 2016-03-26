@@ -52,25 +52,27 @@ angular.module('todoList', [
     editableOptions.theme = 'bs3'
 
     $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) ->
-      Auth.currentUser().then ->
+      Auth.currentUser()
+      .finally ->
+        event.preventDefault()
+      .then ->
         if ['login', 'register'].indexOf(toState.name) > -1
-          event.preventDefault()
-          $state.go 'home'
+          $state.go 'projects'
       , (error) ->
         if ['login', 'register', 'home'].indexOf(toState.name) < 0
-          event.preventDefault()
           $state.go 'login'
       return
 
     $rootScope.$on '$stateChangeError', (event, toState) ->
-      if toState.name is 'project'
-        event.preventDefault()
-        $state.go 'projects'
+      event.preventDefault()
+      auths.showAlert('URI does not exist.')
+      $state.go 'projects'
       return
 
 
     $rootScope.$on 'devise:login', (e, user) ->
       auths.setUser(user, 'You are authorized successfully.')
+      return
 
     return
 ])

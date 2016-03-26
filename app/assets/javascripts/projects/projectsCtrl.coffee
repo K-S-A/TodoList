@@ -18,7 +18,8 @@ angular.module('todoList').controller 'ProjectsCtrl', [
         controller: 'ProjectCtrl as vm'
         size: 'lg')
 
-      modalInstance.result.finally ->
+      modalInstance.result
+      .finally ->
         Project.current = {}
       .then ->
         $anchorScroll()
@@ -31,7 +32,8 @@ angular.module('todoList').controller 'ProjectsCtrl', [
         resolve: data: ['Project', (Project) ->
           Project.current = project])
 
-      modalInstance.result.finally ->
+      modalInstance.result
+      .finally ->
         if $state.current.name = 'projects'
           Project.current = {}
       .then (data) ->

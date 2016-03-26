@@ -7,6 +7,6 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body.container-fluid data={ng_app: 'todoList'}
-    div data={ng_include: "'nav/_nav.html'", ng_controller: "NavCtrl as vm"}
+    div data={ng_include: "'auth/_nav.html'", ng_controller: "AuthCtrl as vm"}
 
     = yield

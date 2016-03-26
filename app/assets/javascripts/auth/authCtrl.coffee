@@ -8,6 +8,7 @@ angular.module('todoList').controller 'AuthCtrl', [
     vm = this
 
     vm.user = auths.user
+    vm.signedIn = Auth.isAuthenticated
     vm.email_pattern = auths.email_pattern
 
     vm.login = ->
@@ -21,6 +22,11 @@ angular.module('todoList').controller 'AuthCtrl', [
       Auth.register(vm.user).then (user) ->
         auths.setUser(user, 'You are registered successfully.')
         $state.go 'projects'
+      return
+
+    vm.logout = ->
+      Auth.logout().then ->
+        auths.setUser({}, 'You are signed out now.')
       return
 
     vm

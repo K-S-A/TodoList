@@ -20,7 +20,8 @@ angular.module('todoList').factory 'auths', [
 
     rmMessage = ->
       $timeout ->
-        o.user.alert = o.user.notice = null
+        u = o.user
+        u.alert = u.notice = null
       , 5000
       return
 
