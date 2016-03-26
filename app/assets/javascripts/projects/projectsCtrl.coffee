@@ -43,7 +43,7 @@ angular.module('todoList').controller 'ProjectsCtrl', [
           if $state.current.name is 'project'
             $state.go 'projects'
           else
-            delete vm.projects[index]
+            vm.projects.splice(index, 1)
 
     vm
 ]
