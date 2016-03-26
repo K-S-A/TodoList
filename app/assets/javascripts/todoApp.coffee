@@ -2,10 +2,11 @@
 
 angular.module('todoList', [
   'ui.router'
+  'ui.bootstrap'
+  'ui.sortable'
   'templates'
   'Devise'
   'rails'
-  'ui.bootstrap'
   'xeditable'
 ]).config([
   '$stateProvider'
