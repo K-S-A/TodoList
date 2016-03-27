@@ -38,8 +38,6 @@ class ApplicationController < ActionController::Base
     render_with(404)
   end
 
-  private
-
   def render_with(status)
     render nothing: true, status: status
   end
