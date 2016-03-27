@@ -8,6 +8,6 @@ angular.module('todoList').factory 'Task', [
       url: '/tasks'
       name: 'task'
       serializer: railsSerializer ->
-        @only 'name'
+        @only 'name', 'deadline', 'status', 'projectId', 'priorityPosition'
 
 ]
