@@ -7,10 +7,9 @@ Rails.application.routes.draw do
   root 'application#main'
 
   resources :projects, except: [:edit, :new] do
-    resources :tasks, only: [:create]
+    resources :tasks, only: [:create, :destroy, :update], shallow: true
   end
 
-  resources :tasks, only: [:destroy, :update]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
