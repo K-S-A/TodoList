@@ -16,15 +16,18 @@ angular.module('todoList').controller 'ProjectsCtrl', [
     vm.sortableOptions =
       connectWith: '.row tbody'
       handle: '.glyphicon-sort'
+      start: ->
+        vm.beforeSorting = angular.copy(vm.projects)
       update: (e, ui) ->
-        item = ui.item.sortable
+        ui = ui.item.sortable
         params =
-          id: item.model.id
-          priorityPosition: item.dropindex
-          projectId: item.droptarget.attr('data-project-id')
+          id: ui.model.id
+          priorityPosition: ui.dropindex
+          projectId: ui.droptarget.attr('data-project-id')
 
-        unless item.moved
-          new Task(params).update()
+        unless ui.moved
+          new Task(params).update().catch ->
+            vm.projects = vm.beforeSorting
 
     vm.add = ->
       modalInstance = $uibModal.open(
@@ -33,7 +36,7 @@ angular.module('todoList').controller 'ProjectsCtrl', [
         size: 'lg',
         resolve: focus:
           setTimeout ->
-            angular.element('#title').focus())
+            angular.element('input:first').focus())
 
       modalInstance.result
       .finally ->
@@ -61,9 +64,10 @@ angular.module('todoList').controller 'ProjectsCtrl', [
     vm.destroy = (project, index) ->
       if $window.confirm('Are you sure?')
         project.delete().then ->
-          vm.projects.splice(index, 1) if vm.projects
-          $state.go 'projects'
-          
+          if index > -1
+            vm.projects.splice(index, 1)
+          else
+            $state.go 'projects'
 
     vm
 ]
