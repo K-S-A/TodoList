@@ -1,4 +1,10 @@
 nav.navbar.navbar-default role="navigation"
+
+  .auth-msg
+    .alert.alert-danger role="alert" data-ng-if='vm.user.alert'
+      p.text-center
+        | {{ vm.user.alert }}
+
   .navbar-header
     button.navbar-toggle type="button" data={ ng_click: "collapsed = !collapsed" }
       span.icon-bar
@@ -34,9 +40,6 @@ nav.navbar.navbar-default role="navigation"
               | Log Out
 
 .auth-msg
-  .alert.alert-danger role="alert" data-ng-if='vm.user.alert'
-    p.text-center
-      | {{ vm.user.alert }}
   .alert.alert-info role="alert" data-ng-if='vm.user.notice'
     p.text-center
       | {{ vm.user.notice }}
