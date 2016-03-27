@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'application#main'
 
-  resources :projects, except: [:edit, :new] do
-    resources :tasks, only: [:create, :destroy, :update], shallow: true
+  resources :projects, shallow: true, except: [:edit, :new], id: /\d+/ do
+    resources :tasks, only: [:create, :update, :destroy] do
+      resources :comments, only: [:create, :update, :destroy]
+    end
   end
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
