@@ -4,5 +4,9 @@ FactoryGirl.define do
     deadline { Faker::Date.forward(90) }
     completed { Faker::Boolean.boolean }
     project
+
+    factory :invalid_task do
+      name ''
+    end
   end
 end
