@@ -61,10 +61,9 @@ angular.module('todoList').controller 'ProjectsCtrl', [
     vm.destroy = (project, index) ->
       if $window.confirm('Are you sure?')
         project.delete().then ->
-          if $state.current.name is 'project'
-            $state.go 'projects'
-          else
-            vm.projects.splice(index, 1)
+          vm.projects.splice(index, 1) if vm.projects
+          $state.go 'projects'
+          
 
     vm
 ]
