@@ -12,7 +12,7 @@ angular.module('todoList').controller 'ProjectCtrl', [
     vm.createProject = ->
       new Project(vm.project).create().then (data) ->
         vm.projects.unshift(data)
-        $uibModalInstance.close()
+        $uibModalInstance.close(data.id)
 
     vm.updateProject = ->
       vm.project.update().then (data) ->

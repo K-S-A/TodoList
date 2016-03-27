@@ -2,27 +2,46 @@
 
 angular.module('todoList').controller 'ProjectsCtrl', [
   'Project'
+  'Task'
   '$uibModal'
   '$anchorScroll'
   '$window'
   '$state'
-  (Project, $uibModal, $anchorScroll, $window, $state) ->
+  (Project, Task, $uibModal, $anchorScroll, $window, $state) ->
     vm = this
 
     vm.projects = Project.all
     vm.project = Project.current
 
+    vm.sortableOptions =
+      connectWith: '.row tbody'
+      handle: '.glyphicon-sort'
+      update: (e, ui) ->
+        item = ui.item.sortable
+        params =
+          id: item.model.id
+          priorityPosition: item.dropindex
+          projectId: item.droptarget.attr('data-project-id')
+
+        unless item.moved
+          new Task(params).update()
+
     vm.add = ->
       modalInstance = $uibModal.open(
         templateUrl: 'projects/_new_form.html'
         controller: 'ProjectCtrl as vm'
-        size: 'lg')
+        size: 'lg',
+        resolve: focus:
+          setTimeout ->
+            angular.element('#title').focus())
 
       modalInstance.result
       .finally ->
         Project.current = {}
-      .then ->
+      .then (id) ->
         $anchorScroll()
+        setTimeout ->
+          angular.element('#task_form_' + id + ' input').focus()
 
     vm.edit = (project) ->
       modalInstance = $uibModal.open(
