@@ -18,10 +18,11 @@
     .panel-body
       .plus-icon-lg.text-center
         span.glyphicon.glyphicon-plus.text-success
-      form#task_form.input-group.input-group-lg { name="vm.addTask"
-                                                  role="form"
-                                                  novalidate=""
-                                                  data={ add_task: "" } }
+      form.input-group.input-group-lg.inbox { id="task_form_{{ project.id }}"
+                                              name="vm.addTask"
+                                              role="form"
+                                              novalidate=""
+                                              data={ add_task: "" } }
         input.form-control.input-lg { placeholder="Start typing here to create a task..."
                                       data={ ng_model: "vm.task.name" } }/
         span.input-group-btn
@@ -29,11 +30,11 @@
             span.add-task-button Add Task
 
     table.table.table-bordered.table-rounded 
-      tbody data={ ng_if: "!project.tasks.length" }
-        tr
-          td
+      tbody.task-list-hover data={ project_id: "{{ project.id }}",
+                                   ui_sortable: "vm.sortableOptions",
+                                   ng_model: "project.tasks" }
+        tr data={ ng_if: "!project.tasks.length" }
+          td colspan="4"
             p.task-name.text-center No tasks have been added yet.
-      tbody.task-list-hover
         tr data={ ng_repeat: "task in project.tasks",
-                  ng_include: "'projects/_task.html'",
-                  task_row: "" }
+                  ng_include: "'projects/_task.html'" }
