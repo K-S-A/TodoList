@@ -4,11 +4,6 @@ $b-radius: 20px;
   min-width: 750px;
 }
 
-@mixin pointer_hover {
-  cursor: pointer;
-  cursor: hand;
-}
-
 @mixin dflex {
   display: flex;
   align-items: center;
@@ -118,7 +113,7 @@ table.table-rounded > .task-list-hover > tr {
 }
 
 .task-title {
-  @include pointer_hover;
+  @extend .pointer-hover;
   padding: 0;
 
   a {
@@ -174,7 +169,7 @@ table.table-rounded > .task-list-hover > tr {
   width: 130px;
 
   li .glyphicon {
-    @include pointer_hover;
+    @extend .pointer-hover;
   }
 }
 
@@ -184,7 +179,7 @@ tbody.task-list-hover tr:hover {
   }
 
   td:nth-child(3) {
-    @include pointer_hover;
+    @extend .pointer-hover;
   }
 
   li, a {
@@ -198,7 +193,7 @@ tbody.task-list-hover tr:hover {
   }
 
   span {
-    @include pointer_hover;
+    @extend .pointer-hover;
   }
 
   :hover {
@@ -208,6 +203,15 @@ tbody.task-list-hover tr:hover {
   }
 }
 
-form#task_form {
+form.inbox {
   max-width: 94%;
+}
+
+.ui-sortable-helper {
+  display: table;
+}
+
+.pointer-hover {
+  cursor: pointer;
+  cursor: hand;
 }
