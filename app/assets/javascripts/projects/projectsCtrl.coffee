@@ -56,7 +56,7 @@ angular.module('todoList').controller 'ProjectsCtrl', [
         if $state.current.name = 'projects'
           Project.current = {}
       .then (data) ->
-        vm.project = data
+        angular.extend(vm.project, data)
 
     vm.destroy = (project, index) ->
       if $window.confirm('Are you sure?')
