@@ -13,13 +13,10 @@ RSpec.describe ProjectsController, type: :controller do
 
   let!(:log_in) { sign_in @user }
 
-  let(:json) { JSON.parse(response.body) }
   let(:error) { 'You need to sign in or sign up before continuing.' }
   let(:log_out) { sign_out @user }
 
-  let(:project_to_json) do
-    @project.attributes.reject { |k, _| k =~ /_/ }.merge('tasks' => [])
-  end
+  let(:project_to_json) { to_json(@project) }
 
   context 'GET index' do
     let!(:call_action) { get :index }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Task, type: :model, focus: true do
+RSpec.describe Task, type: :model do
   before(:all) { @project = FactoryGirl.create(:project) }
 
   subject { FactoryGirl.build(:task) }
