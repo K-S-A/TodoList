@@ -1,12 +1,12 @@
 doctype html
 html
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type" /
     title Todo List
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  body.container-fluid data={ng_app: 'todoList'}
-    div data={ng_include: "'auth/_nav.html'", ng_controller: "AuthCtrl as vm"}
+  body.container-fluid data={ ng_app: 'todoList' }
+    div data={ ng_include: "'auth/_nav.html'", ng_controller: "AuthCtrl as vm" }
 
     = yield

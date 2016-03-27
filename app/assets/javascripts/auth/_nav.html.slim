@@ -1,17 +1,37 @@
-.navbar.navbar-default
-  .container-fluid
-    .nav.navbar-nav.navbar-right
-      ul.nav.navbar-nav
-        li
-          a href="#/home" Home
-        li data-ng-hide="vm.signedIn()"
-          a href="#/login" Log In
-        li data-ng-hide="vm.signedIn()"
-          a href="#/register" Register
-        li data-ng-show="vm.signedIn()"
-          a href="#/" data={ng_click: "vm.logout()"} Log Out
-        li data-ng-show="vm.signedIn()"
-          a href="#/" Logged in as: "{{ vm.user.first_name }} {{ vm.user.last_name }}"
+nav.navbar.navbar-default role="navigation"
+  .navbar-header
+    button.navbar-toggle type="button" data={ ng_click: "collapsed = !collapsed" }
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand data={ ui_sref: "home" } AngularJS/RubyOnRails Todo List
+  .collapse.navbar-collapse data={ ng_class: "{ in: collapsed }" }
+    ul.nav.navbar-nav
+      li
+        a data={ ui_sref: "home" }
+          | Home
+      li data={ ng_show: "vm.signedIn()" }
+        a data={ ui_sref: "projects" }
+          | Projects
+    ul.nav.navbar-nav.navbar-right
+      li data={ ng_hide: "vm.signedIn()" }
+        a data={ ui_sref: "login" }
+          | Log in
+      li data={ ng_hide: "vm.signedIn()" }
+        a data={ ui_sref: "register" }
+          | Register
+      li.pointer-hover data={ is_open: "isopen", ng_show: "vm.signedIn()", uib_dropdown: "" }
+        a type="button" data={ uib_dropdown_toggle: "" }
+          | Logged in as: "{{ vm.user.first_name }} {{ vm.user.last_name }}"
+          span.caret
+        ul aria-labelledby="single-button" role="menu" data={ uib_dropdown_menu: "" }
+          li role="menuitem"
+            a data={ ui_sref: "projects" }
+              | Projects
+          li.divider
+          li role="menuitem"
+            a data={ ng_click: "vm.logout()", ui_sref: "home" }
+              | Log Out
 
 .auth-msg
   .alert.alert-danger role="alert" data-ng-if='vm.user.alert'

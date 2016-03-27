@@ -18,7 +18,7 @@ RSpec.feature 'Authorization', :js do
     end
 
     expect(page).not_to have_content 'Register'
-    expect(page).to have_content 'Log Out'
+    expect(page).to have_content 'Logged in'
     expect(page).to have_content 'You are registered'
     expect(page).to have_content valid_user.first_name
     expect(page).to have_content valid_user.last_name
@@ -26,7 +26,7 @@ RSpec.feature 'Authorization', :js do
 
   scenario 'Registered visitor logs in successfully' do
     visit root_path
-    click_on 'Log In'
+    click_on 'Log in'
     save_user
 
     within '#login_form' do
@@ -36,8 +36,8 @@ RSpec.feature 'Authorization', :js do
       find('input[type="submit"]').click
     end
 
-    expect(page).not_to have_content 'Log In'
-    expect(page).to have_content 'Log Out'
+    expect(page).not_to have_content 'Log in'
+    expect(page).to have_content 'Logged in'
     expect(page).to have_content 'You are authorized'
     expect(page).to have_content valid_user.first_name
     expect(page).to have_content valid_user.last_name
@@ -48,15 +48,16 @@ RSpec.feature 'Authorization', :js do
     login_as valid_user
     visit root_path
 
+    find('a', text: 'Logged in').click
     click_on 'Log Out'
 
-    expect(page).not_to have_content 'Log Out'
+    expect(page).not_to have_content 'Logged in'
     expect(page).to have_content 'signed out'
   end
 
   scenario 'Visitor can\'t log in without registration' do
     visit root_path
-    click_on 'Log In'
+    click_on 'Log in'
 
     within '#login_form' do
       fill_in 'email', with: valid_user.email
@@ -65,7 +66,7 @@ RSpec.feature 'Authorization', :js do
       find('input[type="submit"]').click
     end
 
-    expect(page).not_to have_content 'Log Out'
+    expect(page).not_to have_content 'Logged in'
     expect(page).to have_content 'Wrong user credentials'
   end
 
