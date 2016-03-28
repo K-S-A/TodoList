@@ -1,4 +1,4 @@
-.row data={ ng_init: 'project = vm.project' }
+.row data={ ng_repeat: 'project in [vm.project]' }
   .col-md-8.col-md-offset-2.container-project
     .panel.panel-primary
 
@@ -18,7 +18,7 @@
 
       .panel-body
         .plus-icon-lg.text-center
-          span.glyphicon.glyphicon-plus.text-success
+          span.glyphicon.text-success data={ list_icon: "", remove_selected_tasks: "" }
         form#task_form.input-group.input-group-lg.inbox { name="vm.addTask"
                                                           role="form"
                                                           novalidate=""
