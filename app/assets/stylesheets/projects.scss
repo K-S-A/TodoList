@@ -136,6 +136,11 @@ table.table-rounded > .task-list-hover > tr {
   padding-right: 10px;
   width: 50px;
 
+  .glyphicon-trash {
+    @extend .pointer-hover;
+    color: red;
+  }
+
   .glyphicon-plus {
     top: 5px;
   }

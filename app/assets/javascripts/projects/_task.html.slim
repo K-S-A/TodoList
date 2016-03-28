@@ -1,7 +1,6 @@
 td
   .task-status
-    input type="checkbox" data={ ng_model: "task.checked",
-                                 ng_dblclick: "task.checked = !task.checked" }
+    input type="checkbox" data={ select_task: "", ng_model: "task.checked" }
 td
 td data={ change_task_status: "" }
   p.task-name data={ ng_class: "{ 'strike-text': task.completed }",
