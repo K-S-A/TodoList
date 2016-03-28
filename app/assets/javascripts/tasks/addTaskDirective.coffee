@@ -18,3 +18,11 @@ angular.module('todoList').directive 'deleteTask', ->
     element.on 'click', (e) ->
       ctrl.delete(scope.task).then ->
         scope.project.tasks.splice(scope.$index, 1)
+
+angular.module('todoList').directive 'changeTaskStatus', ->
+    restrict: 'A'
+    scope: '@'
+    controller: 'TasksCtrl as vm'
+    link: (scope, element, attrs, ctrl, transcludeFn) ->
+      element.on 'click', ->
+        ctrl.update({ completed: !scope.task.completed }, scope.task)
