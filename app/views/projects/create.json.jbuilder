@@ -1,1 +1,4 @@
-json.partial! 'projects/project', project: @project
+json.(@project, :id, :title, :description)
+json.tasks do
+  json.array! []
+end
