@@ -5,12 +5,12 @@ class TasksController < ApplicationController
 
   def create
     @task = @project.tasks.create!(task_params)
-
-    render 'update'
   end
 
   def update
     @task.update!(task_params)
+
+    render 'create'
   end
 
   def destroy

@@ -21,7 +21,7 @@ RSpec.describe TasksController, type: :controller do
       end
 
       include_examples 'for successfull request'
-      include_examples 'for rendering templates', [:update]
+      include_examples 'for rendering templates', [:create, :_task]
       include_examples 'for not authorized response'
       include_examples 'for saved from', 'a newley created', 'task'
       include_examples 'for new instance', 'task'
@@ -53,7 +53,7 @@ RSpec.describe TasksController, type: :controller do
       let!(:call_action) { put :update, id: @task.id, task: @valid_attrs }
 
       include_examples 'for successfull request'
-      include_examples 'for rendering templates', [:update]
+      include_examples 'for rendering templates', [:create, :_task]
       include_examples 'for not authorized response'
       include_examples 'for saved from', 'updated', 'task'
       include_examples 'for new instance', 'task'

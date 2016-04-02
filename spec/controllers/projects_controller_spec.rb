@@ -31,7 +31,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     include_examples 'for successfull request'
     include_examples 'for assigning instance variable', :project
-    include_examples 'for rendering templates', [:create, :_project]
+    include_examples 'for rendering templates', [:show]
     include_examples 'for responding with json', :hash, :project
     include_examples 'for not authorized response'
 
@@ -58,7 +58,7 @@ RSpec.describe ProjectsController, type: :controller do
       let!(:call_action) { post :create, project: @valid_attrs }
 
       include_examples 'for successfull request'
-      include_examples 'for rendering templates', [:create, :_project]
+      include_examples 'for rendering templates', [:create]
       include_examples 'for not authorized response'
       include_examples 'for saved from', 'a newley created', 'project'
       include_examples 'for new instance', 'project'

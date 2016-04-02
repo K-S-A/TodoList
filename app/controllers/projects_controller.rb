@@ -1,13 +1,13 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project, only: [:show, :update, :destroy]
+  before_action :find_project, only: [:update, :destroy]
 
   def index
     @projects = current_user.projects.includes(:tasks).order(id: :desc)
   end
 
   def show
-    render 'create'
+    @project = current_user.projects.includes(tasks: :comments).find(params[:id])
   end
 
   def create
